@@ -9,9 +9,9 @@
             <div class="cont_search">
 
                 <!-- <el-select v-model="submit.searchflag" clearable placeholder="请选择">
-                                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-                                </el-option>
-                            </el-select> -->
+                                                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                                                </el-option>
+                                            </el-select> -->
                 <input class="searchword" type="text" v-model="submit.searchword" placeholder="请输入关键词" onfocus="this.placeholder=''" onblur="this.placeholder='请输入关键词'" />
                 <el-date-picker value-format="yyyyMMdd" v-model="submit.searchTime" type="daterange" align="right" unlink-panels range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions2">
                 </el-date-picker>
@@ -25,7 +25,7 @@
         </div>
         <div style="width:100%">
             <div class="cont_list">
-                <el-table :data="tableData" style="width:100%">
+                <el-table :data="tableData" style="width:100%" @row-click="openDetails">>
                     <el-table-column type="index" label="序号" min-width="5%">
                     </el-table-column>
                     <el-table-column prop="TITLE" label="标题" class="multiple" min-width="20%">
@@ -133,7 +133,9 @@ export default {
     mounted() {
         this.init()
         // this.getDetailList()
-        console.log(this.meidiaName, this.meidiaId)
+        console.log(this.meidiaName, this.meidiaId);
+
+
 
     },
 
@@ -180,7 +182,7 @@ export default {
                 endreprints: this.submit.endreprints,
                 starttime: this.submit.searchTime[0],
                 endtime: this.submit.searchTime[1],
-                pageNo: this.submit.pageNo,
+                pageNo: this.submit.pageNo - 1,
                 pageSize: this.submit.pageSize,
                 searchflag: this.submit.searchflag,
                 searchword: this.submit.searchword,
@@ -208,6 +210,10 @@ export default {
                 console.log(response, "我失败了")
             });
         },
+        openDetails(row) {
+            this.$router.push({ path: '/analysisDetaile', query: { id: row.ID} })
+        }
+
     },
     components: {
         pagination

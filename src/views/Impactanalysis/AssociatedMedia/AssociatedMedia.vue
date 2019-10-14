@@ -5,9 +5,9 @@
       <a>合作媒体分析</a>
     </el-row>
     <el-row :span="24" class="">
-      <div class="meiti_time">媒体共发布稿件50篇。</div>
-      <div class="meiti_time meiti_timeBg2">媒体共发布稿件50篇。</div>
-      <div class="meiti_time meiti_timeBg3">媒体共发布稿件50篇。</div>
+      <div class="meiti_time" @click="changeSearch(1)">媒体共发布稿件{{articleTotalNumber.dayNowNumber}}篇。</div>
+      <div class="meiti_time meiti_timeBg2" @click="changeSearch(7)">媒体共发布稿件{{articleTotalNumber.daySevenNumber}}篇。</div>
+      <div class="meiti_time meiti_timeBg3" @click="changeSearch(15)"> 媒体共发布稿件{{articleTotalNumber.dayFifteenNumber}}篇。</div>
     </el-row>
     <el-row :span="24" class="">
       <div class="meitiLeftc">
@@ -18,7 +18,7 @@
       <div class="meitiRightc">
         <div class="swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" >
+            <div class="swiper-slide" v-for="(itemList,index) in mediaInformationList" :key="index">
               <table border="0" cellpadding="0" cellspacing="0">
                 <tr class="tou">
                   <td>序号</td>
@@ -26,190 +26,21 @@
                   <td>发稿数量</td>
                   <td>总传播力指数</td>
                 </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
+                <tr v-for="(item,index_x) in itemList" :key="index_x">
+                  <td>{{index*9+index_x+1}}</td>
+                  <td>{{item.mediaName}}</td>
+                  <td v-if="searchDay==1">{{item.dayNowNumber}}</td>
+                  <td v-if="searchDay==7">{{item.daySevenNumber}}</td>
+                  <td v-if="searchDay==15">{{item.dayFifteenNumber}}</td>
+
+                  <td v-if="searchDay==1">{{item.dayNowCei}}</td>
+                  <td v-if="searchDay==7">{{item.daySevenCei}}</td>
+                  <td v-if="searchDay==15">{{item.dayFifteenCei}}</td>
                 </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
+
               </table>
             </div>
-            <div class="swiper-slide">
-              <table border="0" cellpadding="0" cellspacing="0">
-                <tr class="tou">
-                  <td>序号</td>
-                  <td>媒体名称</td>
-                  <td>发稿数量</td>
-                  <td>总传播力指数</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-              </table>
-            </div>
-            <div class="swiper-slide">
-              <table border="0" cellpadding="0" cellspacing="0">
-                <tr class="tou">
-                  <td>序号</td>
-                  <td>媒体名称</td>
-                  <td>发稿数量</td>
-                  <td>总传播力指数</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>人民日报</td>
-                  <td>30</td>
-                  <td>1685.84</td>
-                </tr>
-              </table>
-            </div>
+
           </div>
 
           <div class="swiper-pagination"></div>
@@ -222,14 +53,49 @@
 </template>
 
 <script>
+import fetchUtil from "@/api/fetch";
 
 export default {
   name: "associatedMedia",
   data() {
-    return {};
+    return {
+      searchDay: '',
+      articleTotalNumber: '',
+      mediaInformationData: '',
+      mediaInformationList: [],
+      echartsData: {
+        color: ['#5377ff', '#00a0ea', '#88d899', '#f9bd65', '#d6f28c', '#ec7aad', '#88d2f5', '#eb6a42', '#fff45c', '#fff562', '#5377ff', '#00a0ea', '#88d899', '#f9bd65', '#d6f28c', '#ec7aad', '#88d2f5', '#eb6a42', '#fff45c', '#fff562', '#5377ff', '#00a0ea', '#88d899', '#f9bd65', '#d6f28c', '#ec7aad', '#88d2f5', '#eb6a42', '#fff45c', '#fff562'],
+        data: [],
+        name:[]
+      }
+    };
+  },
+  watch: {
+    searchDay(newName, oldName) {
+      if (newName != oldName) {
+        this.echartsData.data = []
+        for (var i = 0; i < this.mediaInformationData.length; i++) {
+          this.echartsData.name.push(this.mediaInformationData[i].mediaName);
+          if (newName == 1) {
+             this.echartsData.data.push({ value: this.mediaInformationData[i].dayNowNumber, name: this.mediaInformationData[i].mediaName })
+          }
+          if (newName == 7) {
+             this.echartsData.data.push({ value: this.mediaInformationData[i].daySevenNumber, name: this.mediaInformationData[i].mediaName })
+          }
+          if (newName == 15) {
+             this.echartsData.data.push({ value: this.mediaInformationData[i].dayFifteenNumber, name: this.mediaInformationData[i].mediaName })
+          }
+        }
+          this.getEchartData(this.echartsData)
+      }
+
+    }
   },
   mounted() {
-   
+    //获取今天7天15天稿件数
+    this.getMediaArticleTotalNumber();
+    //获取echarts，列表轮播数据
+    this.getMediaInformationList();
     //轮播
     var navSwiper = new Swiper(".swiper-container", {
       pagination: '.swiper-pagination',
@@ -237,29 +103,48 @@ export default {
       autoplay: 3000,
       spaceBetween: 30
     });
-    //echarts
-    var DATA = {
-      color: ['#5377ff', '#00a0ea', '#88d899', '#f9bd65', '#d6f28c', '#ec7aad', '#88d2f5', '#eb6a42', '#fff45c','#fff562'],
-      data: [
-        { value: 10, name: '人民网' },
-        { value: 9, name: '东方头条网' },
-        { value: 8, name: '人民报客户端' },
-        { value: 7, name: '央广网' },
-        { value: 6, name: '新华网' },
-        { value: 5, name: '大粤网' },
-        { value: 4, name: '东方头条网' },
-        { value: 3, name: '中国新闻网' },
-        { value: 2, name: '凤凰网' },
-        { value: 12, name: '东方财富网' },
 
-      ]
-    }
-    this.getEchartData1(DATA)
+    //echarts
   },
 
 
   methods: {
-    getEchartData1(DATA) {
+    getMediaArticleTotalNumber() {
+      fetchUtil({
+        method: 'post',
+        url: "/casindex/mediaStatistics/getMediaArticleTotalNumber",
+      }).then((response) => {
+        console.log(response);
+        this.articleTotalNumber = response.result;
+
+      }, (response) => {
+        console.log('response');
+
+      });
+    },
+    changeSearch(day) {
+      this.searchDay = day;
+    },
+
+    getMediaInformationList() {
+      fetchUtil({
+        method: 'post',
+        url: "/casindex/mediaStatistics/getMediaInformationList",
+      }).then((response) => {
+        this.mediaInformationData = response.result;
+        this.searchDay=1;
+        for (var i = 0; i < this.mediaInformationData.length; i += 9) {
+          this.mediaInformationList.push(this.mediaInformationData.slice(i, i + 9));
+        }
+
+      }, (response) => {
+        console.log('response');
+
+      });
+    },
+
+
+    getEchartData(DATA) {
       let myChart = this.$echarts.init(document.getElementById('myChart'))
       var option = {
         // title: {
@@ -278,7 +163,7 @@ export default {
           // top: 'middle',
           bottom: 30,
           left: 'center',
-          data: ['东方财富网', '凤凰网', '中国新闻网', '东方头条网', '大粤网', '新华网', '央广网', '人民报客户端', '人民网']
+          data: DATA.name,
         },
         series: [
           {
@@ -286,17 +171,6 @@ export default {
             radius: ['38%', '52%'],
             center: ['50%', '40%'],
             selectedMode: 'single',
-            // data: [
-            //   {
-            //     value: 1548,
-            //     name: '幽州',
-
-            //   },
-            //   { value: 535, name: '荆州' },
-            //   { value: 510, name: '兖州' },
-            //   { value: 634, name: '益州' },
-            //   { value: 735, name: '西凉' }
-            // ],
             data: DATA.data,
             itemStyle: {
               emphasis: {

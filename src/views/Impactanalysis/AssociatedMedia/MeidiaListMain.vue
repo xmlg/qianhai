@@ -34,7 +34,6 @@ export default {
     data() {
         return {
             menuList: []
-
         };
     },
 
@@ -42,9 +41,6 @@ export default {
         this.getMenuList();
     },
     methods: {
-
-
-
         handleOpen(key, keyPath) {
             console.log(key, "999", keyPath);
         },
@@ -83,6 +79,8 @@ export default {
             float: left;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
             height: 100%;
+            overflow-x: hidden;
+            overflow-y:scroll; 
             .el-menu {
                 border-right: none;
             }

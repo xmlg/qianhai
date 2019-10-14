@@ -44,11 +44,11 @@
             <div class="toptit">
                 <span class="bg2">外部媒体转载</span>
                 <h1 class="bg2_img">
-                    <a href="" target="_blank"><img src="../../../assets/imgs/meidiaAnalaysis/pinggu220190820_09.jpg" /></a>
+                    <a ><img @click="syshixiana" src="../../../assets/imgs/meidiaAnalaysis/pinggu220190820_09.jpg" /></a>
                     <a href="" target="_blank"><img src="../../../assets/imgs/meidiaAnalaysis/pinggu220190820_11.jpg" /></a>
                 </h1>
             </div>
-            <div class="cont">
+            <div class="cont reprint">
                 <table border="0" cellpadding="0" cellspacing="0">
                     <tr>
                         <td class="tou">核心媒体头条</td>
@@ -99,7 +99,7 @@ import pagination from '@/components/pagination'
 import fetchUtil from "@/api/fetch";
 import * as common from '@/assets/js/common'
 export default {
-    name: "meidiaAnalysis",
+    name: "analysisDetaile",
     data() {
         return {
 
@@ -115,6 +115,9 @@ export default {
     },
 
     methods: {
+       syshixiana:function() {
+            $(".reprint").slideToggle();
+        },
     }
 
 }

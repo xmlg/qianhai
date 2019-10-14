@@ -8,7 +8,7 @@ import AssociatedMedia from './views/Impactanalysis/AssociatedMedia/AssociatedMe
 import ManuscriptLibrary from './views/Impactanalysis/manuscriptLibrary/manuscriptLibrary.vue' //通讯稿件
 import MeidiaListMain from './views/Impactanalysis/AssociatedMedia/MeidiaListMain.vue' //合作媒体报道
 import MeidiaList from './views/Impactanalysis/AssociatedMedia/meidiaList.vue' //合作媒体报道
-import MeidiaAnalysis from './views/Impactanalysis/AssociatedMedia/MeidiaAnalysis.vue' //合作媒体稿件分析
+import AnalysisDetaile from './views/Impactanalysis/AssociatedMedia/analysisDetaile.vue' //合作媒体稿件分析
 
 
 
@@ -47,9 +47,9 @@ export default new Router({
                     component: MeidiaList
                 }]
             }, {
-                path: '/meidiaAnalysis', //合作媒体稿件分析
-                name: 'meidiaAnalysis',
-                component: MeidiaAnalysis,
+                path: '/analysisDetaile', //合作媒体稿件分析
+                name: 'analysisDetaile',
+                component: AnalysisDetaile,
             }],
         }, {
             path: '/homeone',

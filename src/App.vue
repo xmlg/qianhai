@@ -31,6 +31,7 @@ body {
 
 
 
+
 /* 全局重置CSS */
 
 body,
@@ -68,15 +69,12 @@ img {
 
 
 
+
 /*包含以下四种的链接*/
 
 a {
   text-decoration: none;
 }
-
-
-
-
 
 
 /*正常的未被访问过的链接*/
@@ -86,19 +84,11 @@ a:link {
 }
 
 
-
-
-
-
 /*已经访问过的链接*/
 
 a:visited {
   text-decoration: none;
 }
-
-
-
-
 
 
 /*鼠标划过(停留)的链接*/
@@ -109,19 +99,11 @@ a:hover {
 }
 
 
-
-
-
-
 /* 正在点击的链接*/
 
 a:active {
   text-decoration: none;
 }
-
-
-
-
 
 
 /***消除img默认边框*****/
@@ -130,9 +112,45 @@ a {
   text-decoration: none;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  /*滚动条的hover样式*/
+  background-color: rgba(116, 185, 255, 0.8);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  /*滚动条的hover样式*/
+  background-color: rgba(116, 185, 255, 0.8);
+}
+
+
+/*定义滚动条的轨道，内阴影及圆角*/
+
+::-webkit-scrollbar-track {
+  //-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  border-radius: 10px; //background-color: #e9ecef;
+  background-color: transparent;
+  color: transparent;
+  filter: alpha(opacity=0);
+}
+
+
+/*定义滑块，内阴影及圆角*/
+
+::-webkit-scrollbar-thumb {
+  /*width: 10px;*/
+  height: 20px;
+  border-radius: 10px; // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: transparent;
+  color: transparent;
+}
 
 
 
+/*滚动条透明*/
 
 
 /*鼠标在链接上出下划线,为手势形态 */
@@ -140,6 +158,7 @@ a {
 table {
   border-collapse: collapse;
 }
+
 
 
 
@@ -162,6 +181,7 @@ html {
 
 
 
+
 /***默认让所有浏览器出现右边滚动条****/
 
 .clear {
@@ -176,6 +196,7 @@ html {
 :focus {
   outline: 0;
 }
+
 
 
 
@@ -222,8 +243,7 @@ html {
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
-  } 
-  //下拉框选择器
+  } //下拉框选择器
   // .el-select {
   //   float: left;
   //   margin-right: 20px;
