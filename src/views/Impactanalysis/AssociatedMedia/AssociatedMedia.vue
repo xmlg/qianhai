@@ -28,7 +28,7 @@
                 </tr>
                 <tr v-for="(item,index_x) in itemList" :key="index_x">
                   <td>{{index*9+index_x+1}}</td>
-                  <td>{{item.mediaName}}</td>
+                  <td @click="openMeidiaDetails(item)" style="cursor: pointer;" >{{item.mediaName}}</td>
                   <td v-if="searchDay==1">{{item.dayNowNumber}}</td>
                   <td v-if="searchDay==7">{{item.daySevenNumber}}</td>
                   <td v-if="searchDay==15">{{item.dayFifteenNumber}}</td>
@@ -148,6 +148,7 @@ export default {
         console.log('response');
 
       });
+
     },
 
 
@@ -209,6 +210,10 @@ export default {
       window.addEventListener('resize', function() {
         myChart.resize()
       })
+    },
+    openMeidiaDetails(item) {
+      console.log(item)
+      this.$router.push({ path: '/meidiaList', query: { meidiaId: item.id, meidiaName: item.mediaName} })
     }
   },
 
@@ -295,6 +300,7 @@ export default {
             line-height: 34px;
             padding: 10px;
           }
+
           .tou {
             td {
               background: #f0f1f5;
