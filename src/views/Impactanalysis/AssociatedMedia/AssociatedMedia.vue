@@ -173,6 +173,7 @@ export default {
           data: DATA.name,
         },
         series: [
+
           {
             type: 'pie',
             radius: ['38%', '52%'],
@@ -184,6 +185,21 @@ export default {
                 shadowBlur: 10,
                 shadowOffsetX: 0,
                 shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            },
+            labelLine: {
+              normal: {
+                length: 10,  // 改变标示线的长度
+                lineStyle: {
+                  color: "#000"  // 改变标示线的颜色
+                }
+              },
+            },
+            label: {
+              normal: {
+                textStyle: {
+                   color: "#000"  // 改变标示文字的颜色
+                }
               }
             }
           }

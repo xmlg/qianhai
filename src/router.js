@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/login.vue'
-import Homeone from './views/Homeone.vue'
 import Home from './views/Home.vue'
 import Impactanalysis from './views/Impactanalysis/Impactanalysis.vue' //传播力
 import AssociatedMedia from './views/Impactanalysis/AssociatedMedia/AssociatedMedia.vue' //合作媒体
@@ -21,54 +20,39 @@ export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [{
+        path: '',
+        name: 'home',
+        component: Home,
+        children: [{
             path: '',
-            name: 'home',
-            component: Home,
+            name: 'impactanalysis',
+            component: Impactanalysis,
             children: [{
-                path: '',
-                name: 'impactanalysis',
-                component: Impactanalysis,
-                children: [{
-                    path: '/', //合作媒体
-                    name: 'associatedMedia',
-                    component: AssociatedMedia
-                }, {
-                    path: '/manuscriptLibrary', //通讯稿件
-                    name: 'manuscriptLibrary',
-                    component: ManuscriptLibrary
-                }]
+                path: '/', //合作媒体
+                name: 'associatedMedia',
+                component: AssociatedMedia
             }, {
-                path: '',
-                name: 'meidiaListMain',
-                component: MeidiaListMain,
-                children: [{
-                    path: '/meidiaList', //合作媒体
-                    name: 'meidiaList',
-                    component: MeidiaList
-                }]
-            }, {
-                path: '/analysisDetaile', //合作媒体稿件分析
-                name: 'analysisDetaile',
-                component: AnalysisDetaile,
-            }],
+                path: '/manuscriptLibrary', //通讯稿件
+                name: 'manuscriptLibrary',
+                component: ManuscriptLibrary
+            }]
         }, {
-            path: '/homeone',
-            name: 'homeone',
-            component: Homeone
-        },
-        {
-            path: '/about',
-            name: 'about',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () =>
-                import ( /* webpackChunkName: "about" */ './views/About.vue')
-        },
-        {
-            path: '/login',
-            name: 'login',
-            component: Login
-        }
-    ]
+            path: '',
+            name: 'meidiaListMain',
+            component: MeidiaListMain,
+            children: [{
+                path: '/meidiaList', //合作媒体
+                name: 'meidiaList',
+                component: MeidiaList
+            }]
+        }, {
+            path: '/analysisDetaile', //合作媒体稿件分析
+            name: 'analysisDetaile',
+            component: AnalysisDetaile,
+        }],
+    }, {
+        path: '/login',
+        name: 'login',
+        component: Login
+    }]
 })

@@ -44,10 +44,9 @@ export default {
     this.currentRoute = this.$route.path
   },
   watch: {
-    "$route"(to, from) {
-      console.log(this.$route.path);
-      
-        this.currentRoute = this.$route.path
+    "$route"() {
+      console.log(this.$route.path);   
+      this.currentRoute = this.$route.path
     }
   },
   methods: {
@@ -67,9 +66,6 @@ export default {
       }).then((response) => {
         console.log(response, "menuList");
         this.menuList = response.result;
-
-      }, (response) => {
-        console.log('response');
 
       });
 
