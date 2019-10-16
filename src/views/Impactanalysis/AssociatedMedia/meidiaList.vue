@@ -32,15 +32,17 @@
                     </el-table-column>
                     <el-table-column prop="PUBDATE" label="发稿日期" min-width="10%" align="center">
                     </el-table-column>
-                    <el-table-column prop="WEBSITEREPRINTS" label="网站" min-width="9%" align="center">
+                    <el-table-column prop="WEBSITEREPRINTS" label="网站" min-width="5%" align="center">
                     </el-table-column>
-                    <el-table-column prop="WEIXINREPRINTS" label="微信" min-width="9%" align="center">
+                    <el-table-column prop="APPREPTINTS" label="APP" min-width="5%" align="center">
                     </el-table-column>
-                    <el-table-column prop="WEIBOCOREREPRINTS" label="微博" min-width="9%" align="center">
+                    <el-table-column prop="WEIXINREPRINTS" label="微信" min-width="5%" align="center">
                     </el-table-column>
-                    <el-table-column prop="meiti" label="自媒体" min-width="9%" align="center">
+                    <el-table-column prop="WEIBOREPTINTS" label="微博" min-width="5%" align="center">
                     </el-table-column>
-                    <el-table-column prop="titiao" label="头条" min-width="9%" align="center">
+                    <el-table-column prop="EPAPERREPRINTS" label="电子报" min-width="5%" align="center">
+                    </el-table-column>
+                    <el-table-column prop="PLATEFORMREPRINTS" label="自媒体" min-width="5%" align="center">
                     </el-table-column>
                     <el-table-column prop="REPRINTS" label="总转载" min-width="10%" align="center">
                     </el-table-column>
@@ -211,7 +213,7 @@ export default {
             });
         },
         openDetails(row) {
-            this.$router.push({ path: '/analysisDetaile', query: { id: row.ID} })
+            this.$router.push({ path: '/analysisDetaile', query: { id: row.SID,mediaUnitName: row.SITENAME} })
         }
 
     },

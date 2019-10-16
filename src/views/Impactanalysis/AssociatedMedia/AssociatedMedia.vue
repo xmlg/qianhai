@@ -66,7 +66,7 @@ export default {
       echartsData: {
         color: ['#5377ff', '#00a0ea', '#88d899', '#f9bd65', '#d6f28c', '#ec7aad', '#88d2f5', '#eb6a42', '#fff45c', '#fff562', '#5377ff', '#00a0ea', '#88d899', '#f9bd65', '#d6f28c', '#ec7aad', '#88d2f5', '#eb6a42', '#fff45c', '#fff562', '#5377ff', '#00a0ea', '#88d899', '#f9bd65', '#d6f28c', '#ec7aad', '#88d2f5', '#eb6a42', '#fff45c', '#fff562'],
         data: [],
-        name:[]
+        name: []
       }
     };
   },
@@ -76,19 +76,26 @@ export default {
         this.echartsData.data = []
         for (var i = 0; i < this.mediaInformationData.length; i++) {
           this.echartsData.name.push(this.mediaInformationData[i].mediaName);
+
           if (newName == 1) {
-             this.echartsData.data.push({ value: this.mediaInformationData[i].dayNowNumber, name: this.mediaInformationData[i].mediaName })
+            if (this.mediaInformationData[i].dayNowNumber != 0) {
+              this.echartsData.data.push({ value: this.mediaInformationData[i].dayNowNumber, name: this.mediaInformationData[i].mediaName })
+            }
           }
           if (newName == 7) {
-             this.echartsData.data.push({ value: this.mediaInformationData[i].daySevenNumber, name: this.mediaInformationData[i].mediaName })
+            if (this.mediaInformationData[i].daySevenNumber != 0) {
+              this.echartsData.data.push({ value: this.mediaInformationData[i].daySevenNumber, name: this.mediaInformationData[i].mediaName })
+            }
           }
           if (newName == 15) {
-             this.echartsData.data.push({ value: this.mediaInformationData[i].dayFifteenNumber, name: this.mediaInformationData[i].mediaName })
+            if (this.mediaInformationData[i].dayFifteenNumber != 0) {
+              this.echartsData.data.push({ value: this.mediaInformationData[i].dayFifteenNumber, name: this.mediaInformationData[i].mediaName })
+            }
+
           }
         }
-          this.getEchartData(this.echartsData)
       }
-
+      this.getEchartData(this.echartsData)
     }
   },
   mounted() {
@@ -132,7 +139,7 @@ export default {
         url: "/casindex/mediaStatistics/getMediaInformationList",
       }).then((response) => {
         this.mediaInformationData = response.result;
-        this.searchDay=1;
+        this.searchDay = 1;
         for (var i = 0; i < this.mediaInformationData.length; i += 9) {
           this.mediaInformationList.push(this.mediaInformationData.slice(i, i + 9));
         }

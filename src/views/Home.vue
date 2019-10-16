@@ -4,7 +4,7 @@
       <el-col :span="24">
         <div class="top_bg">
           <div class="top_bg_con">
-            <div class="logo"><img src="../assets/imgs/heard/pinggu20190820_09.png" /></div>
+            <div class="logo" @click="goHome"><img src="../assets/imgs/heard/pinggu20190820_09.png" /></div>
             <div class="menu">
               <ul>
                 <li class="hover" @click.native="AssociatedMedia">
@@ -47,6 +47,9 @@ export default {
     ThematicAnalysis: function() {
       this.navState = "ThematicAnalysis"
     },
+    goHome:function(){
+      this.$router.push("/");
+    }
 
 
 

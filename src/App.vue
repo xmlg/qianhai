@@ -32,6 +32,7 @@ body {
 
 
 
+
 /* 全局重置CSS */
 
 body,
@@ -70,11 +71,13 @@ img {
 
 
 
+
 /*包含以下四种的链接*/
 
 a {
   text-decoration: none;
 }
+
 
 
 /*正常的未被访问过的链接*/
@@ -84,11 +87,13 @@ a:link {
 }
 
 
+
 /*已经访问过的链接*/
 
 a:visited {
   text-decoration: none;
 }
+
 
 
 /*鼠标划过(停留)的链接*/
@@ -99,11 +104,13 @@ a:hover {
 }
 
 
+
 /* 正在点击的链接*/
 
 a:active {
   text-decoration: none;
 }
+
 
 
 /***消除img默认边框*****/
@@ -127,6 +134,7 @@ a {
 }
 
 
+
 /*定义滚动条的轨道，内阴影及圆角*/
 
 ::-webkit-scrollbar-track {
@@ -138,6 +146,7 @@ a {
 }
 
 
+
 /*定义滑块，内阴影及圆角*/
 
 ::-webkit-scrollbar-thumb {
@@ -147,6 +156,7 @@ a {
   background-color: transparent;
   color: transparent;
 }
+
 
 
 
@@ -165,6 +175,7 @@ table {
 
 
 
+
 /*细线表格*/
 
 em {
@@ -175,6 +186,7 @@ html {
   overflow-y: auto;
   height: 100%;
 }
+
 
 
 
@@ -203,6 +215,7 @@ html {
 
 
 
+
 /***默认清除浮动****/
 
 
@@ -213,9 +226,11 @@ html {
     font-size: 20px !important;
     &:active {
       background-color: #4259a3 !important;
+      color: #ffffff !important;
     }
     &:hover {
       background-color: #4259a3 !important;
+      color: #ffffff !important;
     }
   }
   .el-menu-item {
@@ -224,9 +239,11 @@ html {
     min-width: 170px;
     &:active {
       background-color: #4259a3 !important;
+      color: #ffffff !important;
     }
     &:hover {
       background-color: #4259a3 !important;
+      color: #ffffff !important;
     }
   }
   .swiper-container {
@@ -260,5 +277,6 @@ html {
     height: 36px;
     margin-right: 3%;
   }
+  
 }
 </style>

@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     submitForm() {
-      this.handleSaveUserInfo(); //调用保存用户信息，在那里用，就在那里调
+     
       var _this = this;
       if (this.form.username == "") {
         _this.$message.error("提交失败，用户名不能为空！");
@@ -97,9 +97,7 @@ export default {
           response => {
             console.log("success");
             if (response.ISSUCCESS == "true") {
-              localStorage.userName = response.data.username;
-              localStorage.realName = response.data.realname;
-              localStorage.userid = response.data.userId;
+               this.handleSaveUserInfo(); //调用保存用户信息，在那里用，就在那里调
        
               _this.$router.push("/");
             } else {

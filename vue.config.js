@@ -78,7 +78,7 @@ module.exports = {
         hotOnly: false,
         proxy: {
             '/casindex': {
-                target: 'http://172.24.33.117:9192/casindex',
+                target: 'http://14.116.154.207:9192/casindex',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/casindex': ''

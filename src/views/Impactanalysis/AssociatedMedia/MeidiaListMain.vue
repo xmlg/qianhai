@@ -3,9 +3,8 @@
         <!-- <el-row class="tac"> -->
         <div style="width:100%;" class="tac">
             <div class="left_menu">
-
-                <el-menu :default-active="this.$route.path" router @open="handleOpen" @close="handleClose" background-color="#f0f1f5" text-color="#888" active-text-color="#4259a3">
-                    <el-submenu index="1">
+                <el-menu :default-active="this.$route.path" router @open="handleOpen" @close="handleClose" background-color="#f0f1f5" text-color="#888" active-text-color="#4259a3" :router="true" :default-openeds=[allMeidia]>
+                    <el-submenu :index="allMeidia" :key='""' >
                         <template slot="title">
                             <span>合作媒体</span>
                         </template>
@@ -33,7 +32,8 @@ export default {
     name: "impactanalysis",
     data() {
         return {
-            menuList: []
+            menuList: [],
+            allMeidia:'/meidiaList?meidiaId='+''+'&meidiaName=' + '',
         };
     },
 
@@ -43,9 +43,11 @@ export default {
     methods: {
         handleOpen(key, keyPath) {
             console.log(key, "999", keyPath);
+            this.$router.push({ path: key})
         },
         handleClose(key, keyPath) {
             console.log(key, keyPath);
+            this.$router.push({ path: key})
         },
         getMenuList: function() {
             fetchUtil({

@@ -3,17 +3,17 @@
     <div class="tac">
       <div class="left_menu">
         <el-menu :default-active="this.$route.path" router @open="handleOpen" @close="handleClose" background-color="#f0f1f5" text-color="#888" active-text-color="#4259a3">
-          <el-submenu index="/">
-            <template slot="title">
-              <span>合作媒体</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item v-for="(item,index) in menuList" :key="item.id" :index="'/meidiaList?meidiaId='+item.id+'&meidiaName=' + item.siteName">{{item.siteName}}</el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-          <!-- <el-menu-item index="/">
-                      <span slot="title">合作媒体</span>
-                    </el-menu-item> -->
+          <!-- <el-submenu index="/">
+                    <template slot="title">
+                      <span>合作媒体</span>
+                    </template>
+                    <el-menu-item-group>
+                      <el-menu-item v-for="(item,index) in menuList" :key="item.mddiaCode" :index="'/meidiaList?meidiaId='+item.mddiaCode+'&meidiaName=' + item.mediaName">{{item.mediaName}}</el-menu-item>
+                    </el-menu-item-group>
+                  </el-submenu> -->
+          <el-menu-item :index='worTogetherMeidia'>
+            <span slot="title" :class="(currentRoute=='/')?'active':''">合作媒体</span>
+          </el-menu-item>
           <el-menu-item index="/manuscriptLibrary">
             <span slot="title">通讯稿件分析</span>
           </el-menu-item>
@@ -35,10 +35,20 @@ export default {
   data() {
     return {
       menuList: [],
+      currentRoute: '',
+      worTogetherMeidia: '/meidiaList?meidiaId=' + '' + '&meidiaName=' + '',
+
     };
   },
-  mounted() {
-    this.getMenuList();
+  created: function() {
+    this.currentRoute = this.$route.path
+  },
+  watch: {
+    "$route"(to, from) {
+      console.log(this.$route.path);
+      
+        this.currentRoute = this.$route.path
+    }
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -53,10 +63,10 @@ export default {
     getMenuList: function() {
       fetchUtil({
         method: 'get',
-        url: "/casindex/articleIndexSearch/getSiteList",
+        url: "/casindex/mediaStatistics/getAllMedia",
       }).then((response) => {
         console.log(response, "menuList");
-        this.menuList = response;
+        this.menuList = response.result;
 
       }, (response) => {
         console.log('response');
@@ -85,6 +95,9 @@ export default {
       height: 100%;
       .el-menu {
         border-right: none;
+        .active {
+          color: #4259a3
+        }
       }
     }
     .impactanalysis_main {
