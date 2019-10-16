@@ -161,7 +161,7 @@ export default {
         // },
         tooltip: {
           trigger: 'item',
-          formatter: "{a} <br/>{b} : {c} ({d}%)"
+          formatter: "{b} : {c} ({d}%)"
         },
         //color: ['#507bee', '#ffbb56', '#07de65', '#f05396', '#0f9ad3'],
         color: DATA.color,
@@ -187,21 +187,21 @@ export default {
                 shadowColor: 'rgba(0, 0, 0, 0.5)'
               }
             },
-            labelLine: {
-              normal: {
-                length: 10,  // 改变标示线的长度
-                lineStyle: {
-                  color: "#000"  // 改变标示线的颜色
-                }
-              },
-            },
-            label: {
-              normal: {
-                textStyle: {
-                   color: "#000"  // 改变标示文字的颜色
-                }
-              }
-            }
+            // labelLine: {
+            //   normal: {
+            //     length: 10,  // 改变标示线的长度
+            //     lineStyle: {
+            //       color: "#000"  // 改变标示线的颜色
+            //     }
+            //   },
+            // },
+            // label: {
+            //   normal: {
+            //     textStyle: {
+            //        color: "#000"  // 改变标示文字的颜色
+            //     }
+            //   }
+            // }
           }
         ]
       };

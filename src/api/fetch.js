@@ -49,7 +49,7 @@ export default function fetchUtil(opt) {
         axios[method](url, param)
         .then(({ data }) => {
             console.log(data, '回来的手机')
-            if (data.ISSUCCESS == false) { //重定向
+            if (data.ISSUCCESS == "false") { //重定向
                 window.location = '/login'
             }
             resolve(data)
