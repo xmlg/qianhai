@@ -20,7 +20,7 @@
         <p class="password">
           <el-form-item label prop="password" style="margin-bottom:0px;" :label-width="widthN">
             <input
-              type="text"
+              type="password"
               v-model="form.password"
               class="form_input"
               placeholder="密码"
@@ -54,7 +54,7 @@ export default {
   name: "Login",
   data() {
     return {
-      checked: false,
+      checked: true,
       ckeckInfo: "复选框没有被选中",
       widthN: "0px",
       form: {

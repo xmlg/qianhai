@@ -1,8 +1,7 @@
 <template>
   <div>
       
-    
-    通訊稿庫
+    开发者
   </div>
 </template>
 

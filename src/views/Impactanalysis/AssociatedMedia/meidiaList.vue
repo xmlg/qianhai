@@ -13,7 +13,7 @@
                                                 </el-option>
                                             </el-select> -->
                 <input class="searchword" type="text" v-model="submit.searchword" placeholder="请输入关键词" onfocus="this.placeholder=''" onblur="this.placeholder='请输入关键词'" />
-                <el-date-picker value-format="yyyyMMdd" v-model="submit.searchTime" type="daterange" align="right" unlink-panels range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions2">
+                <el-date-picker value-format="yyyyMMdd" v-model="submit.searchTime" type="daterange" align="right" unlink-panels range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions2" style="cursor: pointer;">
                 </el-date-picker>
 
                 <input type="text" class="min" v-model="submit.startreprints" placeholder="最小影响力" onfocus="this.placeholder=''" onblur="this.placeholder='最小影响力'" />
@@ -28,7 +28,7 @@
                 <el-table :data="tableData" style="width:100%" @row-click="openDetails">>
                     <el-table-column type="index" label="序号" min-width="5%">
                     </el-table-column>
-                    <el-table-column prop="TITLE" label="标题" class="multiple" min-width="20%">
+                    <el-table-column  prop="TITLE" label="标题" class="multiple" min-width="20%">
                     </el-table-column>
                     <el-table-column prop="PUBDATE" label="发稿日期" min-width="10%" align="center">
                     </el-table-column>
@@ -76,7 +76,7 @@ export default {
             submit: {
                 startreprints: "",//影响力范围
                 endreprints: '',//影响力范围 
-                searchTime: [common.format(new Date() - 24 * 60 * 60 * 1000, 'yyyyMMdd'), common.format(new Date(), 'yyyyMMdd')],
+                searchTime: [common.format(new Date() - 3600 * 1000 * 24 * 30, 'yyyyMMdd'), common.format(new Date(), 'yyyyMMdd')],
                 pageNo: 1, //页数
                 pageSize: 20, //每页的数据条数
                 searchflag: '', //标题或者正文检索
@@ -289,12 +289,14 @@ export default {
         .searchword {
             width: 20%;
             margin: 0 3% 0 0; // color: #aaa;
+            cursor: pointer;
         }
         .min,
         .max {
             width: 10%;
             text-align: center;
             margin: 0 1% 0 0; // color: #aaa;
+            cursor: pointer
         }
 
         select {
@@ -315,6 +317,7 @@ export default {
             margin: 0 0 0 4%;
             border: none;
             border-radius: 5px;
+            cursor: pointer
         }
         .btn2 {
             background: #c9c9c9;
@@ -327,6 +330,7 @@ export default {
             margin: 0;
             border: none;
             border-radius: 5px;
+            cursor: pointer
         }
         .empty {
             background: #4259a3;

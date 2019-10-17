@@ -7,9 +7,9 @@
         </div>
         <div class="toptextC">
             <div class="toptit">
-                <span>{{InfDetails.title}}</span>
+                <span :title="InfDetails.title">{{InfDetails.title}}</span>
                 <div class="toptit_btn">
-                  
+
                     <a @click="scrollTo">查看正文</a>
                 </div>
             </div>
@@ -42,8 +42,8 @@
                         <a>{{allMediaNum}}</a>
                     </span> 家媒体转载该稿件，其中包括核心媒体头条
                     <!-- <span>
-                        <a>{{topMeidaNum}}</a>
-                    </span> 家、 核心媒体 -->
+                                <a>{{topMeidaNum}}</a>
+                            </span> 家、 核心媒体 -->
                     <span>
                         <a>{{heartMeidaNum}}</a>
                     </span> 家、 一级媒体
@@ -63,23 +63,23 @@
                     <a>
                         <img @click="syshixiana" src="../../../assets/imgs/meidiaAnalaysis/pinggu220190820_09.jpg" />
                     </a>
-                    <a href target="_blank">
-                        <img src="../../../assets/imgs/meidiaAnalaysis/pinggu220190820_11.jpg" />
-                    </a>
+                    <!-- <a href target="_blank">
+                                <img src="../../../assets/imgs/meidiaAnalaysis/pinggu220190820_11.jpg" />
+                            </a> -->
                 </h1>
             </div>
             <div class="cont reprint">
                 <table border="0" cellpadding="0" cellspacing="0">
                     <!-- <tr>
-                        <td class="tou">核心媒体头条</td>
-                        <td class="media_list" style="display: block;">
-                            <p>共 {{topMeidaNum}} 家媒体转载{{topMeidaReprintNum}}次
-                                <a class="zhankai">[展开全部]</a>
-                                <a class="shouqi">[收起部分]</a>
-                            </p>
-                            <span class="media_name" v-for="(area,index) in outSideTopMedia" :key="index" @click="goToUrl(area.url)">{{area.aa}};</span>
-                        </td>
-                    </tr> -->
+                                <td class="tou">核心媒体头条</td>
+                                <td class="media_list" style="display: block;">
+                                    <p>共 {{topMeidaNum}} 家媒体转载{{topMeidaReprintNum}}次
+                                        <a class="zhankai">[展开全部]</a>
+                                        <a class="shouqi">[收起部分]</a>
+                                    </p>
+                                    <span class="media_name" v-for="(area,index) in outSideTopMedia" :key="index" @click="goToUrl(area.url)">{{area.aa}};</span>
+                                </td>
+                            </tr> -->
                     <tr>
                         <td class="tou">核心媒体</td>
                         <td class="media_list" style="display: block;">
@@ -129,10 +129,10 @@
             </div>
         </div>
         <!-- <div class="toptextC">
-            <div class="cont cont2">
-                <p>新华社消息，15日下午，习近平总书记来到内蒙古赤峰市喀喇沁旗马鞍山林场考察。沿着崎岖的护林小道，习近平步行进入林区察看林木长势，同正在作业的护林员们亲切交谈，了解林场建设发展情况。大家告诉总书记，现在生态好了，在上山巡护的时候，时常碰到狍子、野兔、山鸡、野猪等野生动物，来旅游的人也多了，山野菜不愁卖了，山货也特别多，老百姓切切实实得到了好处，更加深刻地认识到绿水青山就是金山银山。习近平对大家说：“护林员很重要，种树多不容易啊！建设祖国北方和首都生态安全屏障是战略性的任务，是我们要世世代代做下去的事情。”</p>
-            </div>
-        </div> -->
+                    <div class="cont cont2">
+                        <p>新华社消息，15日下午，习近平总书记来到内蒙古赤峰市喀喇沁旗马鞍山林场考察。沿着崎岖的护林小道，习近平步行进入林区察看林木长势，同正在作业的护林员们亲切交谈，了解林场建设发展情况。大家告诉总书记，现在生态好了，在上山巡护的时候，时常碰到狍子、野兔、山鸡、野猪等野生动物，来旅游的人也多了，山野菜不愁卖了，山货也特别多，老百姓切切实实得到了好处，更加深刻地认识到绿水青山就是金山银山。习近平对大家说：“护林员很重要，种树多不容易啊！建设祖国北方和首都生态安全屏障是战略性的任务，是我们要世世代代做下去的事情。”</p>
+                    </div>
+                </div> -->
     </div>
 </template>
 
@@ -292,7 +292,7 @@ export default {
                 that.twoLeveiMediaReprintNum = that.outSideMediaData.erjiLev.erjiLevNums0 + that.outSideMediaData.erjiLev.erjiLevNums3 + that.outSideMediaData.erjiLev.erjiLevNums2 + that.outSideMediaData.erjiLev.erjiLevNums4 + that.outSideMediaData.erjiLev.erjiLevNums5;
                 //转载媒体总数
                 // that.allMediaNum = that.topMeidaNum + that.heartMeidaNum + that.oneLeveiMediaNum + that.twoLeveiMediaNum;
-                that.allMediaNum =  that.heartMeidaNum + that.oneLeveiMediaNum + that.twoLeveiMediaNum;
+                that.allMediaNum = that.heartMeidaNum + that.oneLeveiMediaNum + that.twoLeveiMediaNum;
                 if (that.outSideMediaData.erjiLev.erjiLevMediaSc0 != "") {
                     for (var i = 0; i < that.outSideMediaData.erjiLev.erjiLevMediaSc0.length; i++) {
                         that.outSideTwoLeveMedia.push({ aa: that.outSideMediaData.erjiLev.erjiLevMediaSc0[i].sitenamechannel, url: that.outSideMediaData.erjiLev.erjiLevMediaSc0[i].url })
@@ -421,7 +421,7 @@ export default {
                         that.that.outSideTopMedia.push({ aa: that.outSideMediaData.topLev.topLevMediaSc5[i].sitenamechannel, url: that.outSideMediaData.topLev.topLevMediaSc5[i].url })
                     }
                 }
-                console.log(that.outSideTwoLeveMedia,"一级媒体")
+                console.log(that.outSideTwoLeveMedia, "一级媒体")
                 setTimeout(function() {
                     $(".media_list").each(function() {
                         if ($(this).height() * 1 > 146) {
@@ -534,8 +534,11 @@ export default {
                 background: url(../../../assets/imgs/meidiaAnalaysis/pinggu220190820_03.jpg) left center no-repeat;
                 padding: 0 0 0 40px;
                 float: left;
-                width: 500px;
+                width: 80%;
                 text-align: left;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
             .bg2 {
                 background-image: url(../../../assets/imgs/meidiaAnalaysis/pinggu220190820_06.jpg);
@@ -544,7 +547,8 @@ export default {
                 float: right;
                 width: 60px;
                 height: 22px;
-                margin: 20px 0;
+                margin: 10px 0;
+                cursor: pointer;
                 a {
                     margin: 0 0 0 10px;
                 }
@@ -554,7 +558,7 @@ export default {
             }
             .toptit_btn {
                 float: right;
-                width: 120px;
+                width: 10%;
                 a {
                     background: #bfbfbf;
                     height: 32px;
@@ -565,6 +569,7 @@ export default {
                     font-size: 18px;
                     display: inline-block;
                     margin: 0 0 0 10px;
+                    cursor: pointer;
                     &:hover {
                         background: #5162ba;
                         text-decoration: none;

@@ -5,9 +5,12 @@
       <a>合作媒体分析</a>
     </el-row>
     <el-row :span="24" class="">
-      <div class="meiti_time" @click="changeSearch(1)">媒体共发布稿件{{articleTotalNumber.dayNowNumber}}篇。</div>
-      <div class="meiti_time meiti_timeBg2" @click="changeSearch(7)">媒体共发布稿件{{articleTotalNumber.daySevenNumber}}篇。</div>
-      <div class="meiti_time meiti_timeBg3" @click="changeSearch(15)"> 媒体共发布稿件{{articleTotalNumber.dayFifteenNumber}}篇。</div>
+      <div class="meiti_time" @click="changeSearch(1)" :class="(searchDay==1) ? 'active':''">
+        <a :class="(searchDay==1) ? 'active1':''">今天</a>媒体共发布稿件{{articleTotalNumber.dayNowNumber}}篇。</div>
+      <div class="meiti_time meiti_timeBg2" :class="(searchDay==7) ? 'active':''" @click="changeSearch(7)">
+        <a :class="(searchDay==7) ? 'active1':''">7天</a>媒体共发布稿件{{articleTotalNumber.daySevenNumber}}篇。</div>
+      <div class="meiti_time meiti_timeBg3" :class="(searchDay==15) ? 'active':''" @click="changeSearch(15)">
+        <a :class="(searchDay==15) ? 'active1':''">15天</a> 媒体共发布稿件{{articleTotalNumber.dayFifteenNumber}}篇。</div>
     </el-row>
     <el-row :span="24" class="">
       <div class="meitiLeftc">
@@ -28,7 +31,7 @@
                 </tr>
                 <tr v-for="(item,index_x) in itemList" :key="index_x">
                   <td>{{index*9+index_x+1}}</td>
-                  <td @click="openMeidiaDetails(item)" style="cursor: pointer;" >{{item.mediaName}}</td>
+                  <td @click="openMeidiaDetails(item)" style="cursor: pointer;">{{item.mediaName}}</td>
                   <td v-if="searchDay==1">{{item.dayNowNumber}}</td>
                   <td v-if="searchDay==7">{{item.daySevenNumber}}</td>
                   <td v-if="searchDay==15">{{item.dayFifteenNumber}}</td>
@@ -213,7 +216,7 @@ export default {
     },
     openMeidiaDetails(item) {
       console.log(item)
-      this.$router.push({ path: '/meidiaList', query: { meidiaId: item.id, meidiaName: item.mediaName} })
+      this.$router.push({ path: '/meidiaList', query: { meidiaId: item.id, meidiaName: item.mediaName } })
     }
   },
 
@@ -248,24 +251,35 @@ export default {
     width: 32%;
     margin: 0 0.83% 16px 0.5%;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-    float: left;
-    background: url(../../../assets/imgs/associated/pinggu20190820_20.png) 20px center no-repeat;
-    background-size: 52px;
+    float: left; // background: url(../../../assets/imgs/associated/pinggu20190820_20.png) 20px center no-repeat;
+    // background-size: 52px;
     height: 40px;
     line-height: 40px;
-    color: #333;
-    font-size: 18px;
-    text-indent: 90px;
+    color: #b8b2ad;
+    font-size: 18px; // text-indent: 90px;
+    text-indent: 10px;
     overflow: hidden;
     display: inline;
     text-align: left;
+    cursor: pointer;
+    a {
+      color: #b8b2ad;
+      font-family: numberZ;
+      padding-right: 10px;
+    }
+
+    .active1 {
+      color: #615fd6;
+    }
   }
-  .meiti_timeBg2 {
-    background-image: url(../../../assets/imgs/associated/pinggu20190820_23.png);
-  }
-  .meiti_timeBg3 {
-    background-image: url(../../../assets/imgs/associated/pinggu20190820_29.png);
-  }
+  .active {
+    color: #333;
+  } // .meiti_timeBg2 {
+  //   background-image: url(../../../assets/imgs/associated/pinggu20190820_23.png);
+  // }
+  // .meiti_timeBg3 {
+  //   background-image: url(../../../assets/imgs/associated/pinggu20190820_29.png);
+  // }
   .meitiLeftc {
     width: 48%;
     float: left;

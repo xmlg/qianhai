@@ -57,7 +57,8 @@ export default {
             if (graph.nodes && graph.nodes.length > 100) {
                 d3.select("svg#maps").attr('transform', 'translate(0,0)scale(0.4)')
             } else {
-                d3.select("svg#maps").attr('transform', 'translate(0,0)scale(0.6)')
+                // d3.select("svg#maps").attr('transform', 'translate(0,0)scale(0.6)')
+                 d3.select("svg#maps").attr('transform', 'translate(0,0)scale(1)')
             }
 
             let link = svg.append("g")

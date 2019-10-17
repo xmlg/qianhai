@@ -7,12 +7,12 @@
             <div class="logo" @click="goHome"><img src="../assets/imgs/heard/pinggu20190820_09.png" /></div>
             <div class="menu">
               <ul>
-                <li class="hover" @click.native="AssociatedMedia">
-                  <a>
+                <li class="hover" @click="AssociatedMedia">
+                  <a :class="(navState ==false)?'active':''">
                     <span><img src="../assets/imgs/heard/pinggu20190820_04.png" /></span>传播力分析</a>
                 </li>
-                <li @click.native="ThematicAnalysis">
-                  <a>
+                <li @click="ThematicAnalysis">
+                  <a :class="(navState ==true)?'active':''">
                     <span><img src="../assets/imgs/heard/pinggu20190820_06.png" /></span>专题分析</a>
                 </li>
               </ul>
@@ -22,7 +22,7 @@
 
       </el-col>
     </el-row>
-      <router-view></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -34,20 +34,26 @@ export default {
   name: "home",
   data() {
     return {
-      navState: "AssociatedMedia",//头部导航栏状态
+      navState: false,//头部导航栏状态
     };
-
   },
-
+  watch: {
+    '$route'() {
+      if( this.$route.path.indexOf("manuscriptLibrary")>-1){
+        this.navState=true;
+      }
+    }
+  },
   methods: {
     AssociatedMedia: function() {
-      this.navState = "AssociatedMedia"
-      this.$router.push("/impactanalysis");
+      this.navState = false;
+      this.$router.push("/");
     },
     ThematicAnalysis: function() {
-      this.navState = "ThematicAnalysis"
+      this.navState = true;
+      this.$router.push("/manuscriptLibrary");
     },
-    goHome:function(){
+    goHome: function() {
       this.$router.push("/");
     }
 
@@ -67,12 +73,13 @@ export default {
       min-width: 1200px;
       margin: 0 auto;
       position: relative;
-      height: 78px;
+      height: 88px;
       padding: 8px 0;
       .logo {
         float: left;
         padding: 28px 0 0 80px;
         width: 660px;
+        cursor: pointer;
         img {
           height: 40px;
         }
@@ -101,8 +108,11 @@ export default {
                 height: 40px;
               }
             }
-          }
-          &:hover {
+          } // &:hover {
+          //   border: 2px solid #fff;
+          //   border-radius: 5px;
+          // }
+          .active {
             border: 2px solid #fff;
             border-radius: 5px;
           }

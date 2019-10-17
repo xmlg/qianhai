@@ -2,7 +2,7 @@
   <div id="main_body_content" class="main_body_content">
     <div class="tac">
       <div class="left_menu">
-        <el-menu :default-active="this.$route.path" router @open="handleOpen" @close="handleClose" background-color="#f0f1f5" text-color="#888" active-text-color="#4259a3">
+        <el-menu :default-active="this.$route.path" router @open="handleOpen" @close="handleClose" background-color="#f0f1f5" text-color="#888" active-text-color="#4259a3" >
           <!-- <el-submenu index="/">
                     <template slot="title">
                       <span>合作媒体</span>

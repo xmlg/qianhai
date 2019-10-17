@@ -33,6 +33,9 @@ body {
 
 
 
+
+
+
 /* 全局重置CSS */
 
 body,
@@ -72,11 +75,17 @@ img {
 
 
 
+
+
+
 /*包含以下四种的链接*/
 
 a {
   text-decoration: none;
 }
+
+
+
 
 
 
@@ -88,6 +97,9 @@ a:link {
 
 
 
+
+
+
 /*已经访问过的链接*/
 
 a:visited {
@@ -96,12 +108,18 @@ a:visited {
 
 
 
+
+
+
 /*鼠标划过(停留)的链接*/
 
 a:hover {
-  cursor: pointer;
+  // cursor: pointer;
   text-decoration: none;
 }
+
+
+
 
 
 
@@ -110,6 +128,9 @@ a:hover {
 a:active {
   text-decoration: none;
 }
+
+
+
 
 
 
@@ -135,6 +156,9 @@ a {
 
 
 
+
+
+
 /*定义滚动条的轨道，内阴影及圆角*/
 
 ::-webkit-scrollbar-track {
@@ -144,6 +168,9 @@ a {
   color: transparent;
   filter: alpha(opacity=0);
 }
+
+
+
 
 
 
@@ -160,6 +187,9 @@ a {
 
 
 
+
+
+
 /*滚动条透明*/
 
 
@@ -168,10 +198,6 @@ a {
 table {
   border-collapse: collapse;
 }
-
-
-
-
 
 
 
@@ -191,9 +217,6 @@ html {
 
 
 
-
-
-
 /***默认让所有浏览器出现右边滚动条****/
 
 .clear {
@@ -208,10 +231,6 @@ html {
 :focus {
   outline: 0;
 }
-
-
-
-
 
 
 
@@ -277,6 +296,13 @@ html {
     height: 36px;
     margin-right: 3%;
   }
-  
+  .cont_list {
+    .el-table {
+      .cell {
+
+        cursor: pointer;
+      }
+    }
+  }
 }
 </style>
