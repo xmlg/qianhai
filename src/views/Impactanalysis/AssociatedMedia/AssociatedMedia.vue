@@ -19,7 +19,31 @@
         <!-- <img src="../../../assets/imgs/associated/pinggu20190820_36.jpg" /> -->
       </div>
       <div class="meitiRightc">
-        <div class="swiper-container">
+        <el-carousel class="swiper-container" :interval="50000" arrow="always">
+          <el-carousel-item  v-for="(itemList,index) in mediaInformationList" :key="index">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr class="tou">
+                  <td>序号</td>
+                  <td>媒体名称</td>
+                  <td>发稿数量</td>
+                  <td>总传播力指数</td>
+                </tr>
+                <tr v-for="(item,index_x) in itemList" :key="index_x">
+                  <td>{{index*9+index_x+1}}</td>
+                  <td @click="openMeidiaDetails(item)" style="cursor: pointer;">{{item.mediaName}}</td>
+                  <td v-if="searchDay==1">{{item.dayNowNumber}}</td>
+                  <td v-if="searchDay==7">{{item.daySevenNumber}}</td>
+                  <td v-if="searchDay==15">{{item.dayFifteenNumber}}</td>
+
+                  <td v-if="searchDay==1">{{item.dayNowCei}}</td>
+                  <td v-if="searchDay==7">{{item.daySevenCei}}</td>
+                  <td v-if="searchDay==15">{{item.dayFifteenCei}}</td>
+                </tr>
+
+              </table>
+          </el-carousel-item>
+        </el-carousel>
+        <!-- <div class="swiper-container">
           <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="(itemList,index) in mediaInformationList" :key="index">
               <table border="0" cellpadding="0" cellspacing="0">
@@ -47,7 +71,7 @@
           </div>
 
           <div class="swiper-pagination"></div>
-        </div>
+        </div> -->
       </div>
 
     </el-row>
@@ -107,12 +131,12 @@ export default {
     //获取echarts，列表轮播数据
     this.getMediaInformationList();
     //轮播
-    var navSwiper = new Swiper(".swiper-container", {
-      pagination: '.swiper-pagination',
-      paginationClickable: true,
-      autoplay: 3000,
-      spaceBetween: 30
-    });
+    // var navSwiper = new Swiper(".swiper-container", {
+    //   pagination: '.swiper-pagination',
+    //   paginationClickable: true,
+    //   autoplay: 3000,
+    //   spaceBetween: 30
+    // });
 
     //echarts
   },
@@ -137,9 +161,13 @@ export default {
     },
 
     getMediaInformationList() {
+      var submitparams = {
+        timeScope: this.searchDay
+      }
       fetchUtil({
         method: 'post',
         url: "/casindex/mediaStatistics/getMediaInformationList",
+        params: submitparams
       }).then((response) => {
         this.mediaInformationData = response.result;
         this.searchDay = 1;
@@ -216,7 +244,7 @@ export default {
     },
     openMeidiaDetails(item) {
       console.log(item)
-      this.$router.push({ path: '/meidiaList', query: { meidiaId: item.id, meidiaName: item.mediaName } })
+      this.$router.push({ path: '/meidiaList', query: { meidiaId: item.mediaCode, meidiaName: item.mediaName } })
     }
   },
 

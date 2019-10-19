@@ -4,20 +4,20 @@
         <div style="width:100%;" class="tac">
             <div class="left_menu">
                 <el-menu :default-active="this.$route.path" router @open="handleOpen" @close="handleClose" background-color="#f0f1f5" text-color="#888" active-text-color="#4259a3" :router="true" :default-openeds=[allMeidia]>
-                    <el-submenu :index="allMeidia" :key='""' >
+                    <el-submenu :index="allMeidia" :key='""'>
                         <template slot="title">
                             <span>合作媒体</span>
                         </template>
                         <el-menu-item-group>
-                            <el-menu-item v-for="(item,index) in menuList" :key="item.mddiaCode" :index="'/meidiaList?meidiaId='+item.mddiaCode+'&meidiaName=' + item.mediaName">{{item.mediaName}}</el-menu-item>
+                            <el-menu-item v-for="(item,index) in menuList" :key="item.mddiaCode" :index="'/meidiaList?meidiaId='+item.mddiaCode+'&meidiaName=' + item.mediaName" :class="(currentRoute== ('/meidiaList?meidiaId='+item.mddiaCode))?'active':''">{{item.mediaName}}</el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
                 </el-menu>
             </div>
             <!-- 主页面 -->
             <!-- <el-col class="impactanalysis_main" :span="20" background-color="#b2b2b2;">
-                            <router-view></router-view>
-                        </el-col> -->
+                                    <router-view></router-view>
+                                </el-col> -->
             <div class="impactanalysis_main" background-color="#b2b2b2;">
                 <router-view></router-view>
             </div>
@@ -33,21 +33,29 @@ export default {
     data() {
         return {
             menuList: [],
-            allMeidia:'/meidiaList?meidiaId='+''+'&meidiaName=' + '',
+            allMeidia: '/meidiaList?meidiaId=' + '' + '&meidiaName=' + '',
+            currentRoute: this.$route.fullPath.split("&meidiaName")[0],      
         };
+    },
+    watch: {
+        "$route"() {
+            console.log(this.$route)
+            this.currentRoute = this.$route.fullPath.split("&meidiaName")[0];
+        }
     },
 
     mounted() {
+        console.log(this.currentRoute,"刚开始的路由")
         this.getMenuList();
     },
     methods: {
         handleOpen(key, keyPath) {
             console.log(key, "999", keyPath);
-            this.$router.push({ path: key})
+            this.$router.push({ path: key })
         },
         handleClose(key, keyPath) {
             console.log(key, keyPath);
-            this.$router.push({ path: key})
+            this.$router.push({ path: key })
         },
         getMenuList: function() {
             fetchUtil({
@@ -82,9 +90,12 @@ export default {
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
             height: 100%;
             overflow-x: hidden;
-            overflow-y:scroll; 
+            overflow-y: scroll;
             .el-menu {
                 border-right: none;
+                .active {
+                    color: #4259a3 !important;
+                }
             }
         }
         .impactanalysis_main {

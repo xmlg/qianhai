@@ -1,7 +1,7 @@
 <template>
   <div>
       
-    开发者
+    开发中
   </div>
 </template>
 
