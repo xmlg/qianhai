@@ -19,8 +19,9 @@
         <!-- <img src="../../../assets/imgs/associated/pinggu20190820_36.jpg" /> -->
       </div>
       <div class="meitiRightc">
-        <el-carousel class="swiper-container" :interval="50000" arrow="always">
-          <el-carousel-item  v-for="(itemList,index) in mediaInformationList" :key="index">
+        <div class="swiper-container">
+          <el-carousel :interval="50000" arrow="always">
+            <el-carousel-item v-for="(itemList,index) in mediaInformationList" :key="index">
               <table border="0" cellpadding="0" cellspacing="0">
                 <tr class="tou">
                   <td>序号</td>
@@ -41,37 +42,9 @@
                 </tr>
 
               </table>
-          </el-carousel-item>
-        </el-carousel>
-        <!-- <div class="swiper-container">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(itemList,index) in mediaInformationList" :key="index">
-              <table border="0" cellpadding="0" cellspacing="0">
-                <tr class="tou">
-                  <td>序号</td>
-                  <td>媒体名称</td>
-                  <td>发稿数量</td>
-                  <td>总传播力指数</td>
-                </tr>
-                <tr v-for="(item,index_x) in itemList" :key="index_x">
-                  <td>{{index*9+index_x+1}}</td>
-                  <td @click="openMeidiaDetails(item)" style="cursor: pointer;">{{item.mediaName}}</td>
-                  <td v-if="searchDay==1">{{item.dayNowNumber}}</td>
-                  <td v-if="searchDay==7">{{item.daySevenNumber}}</td>
-                  <td v-if="searchDay==15">{{item.dayFifteenNumber}}</td>
-
-                  <td v-if="searchDay==1">{{item.dayNowCei}}</td>
-                  <td v-if="searchDay==7">{{item.daySevenCei}}</td>
-                  <td v-if="searchDay==15">{{item.dayFifteenCei}}</td>
-                </tr>
-
-              </table>
-            </div>
-
-          </div>
-
-          <div class="swiper-pagination"></div>
-        </div> -->
+            </el-carousel-item>
+          </el-carousel>
+        </div>
       </div>
 
     </el-row>
@@ -86,7 +59,7 @@ export default {
   name: "associatedMedia",
   data() {
     return {
-      searchDay: '',
+      searchDay: 1,
       articleTotalNumber: '',
       mediaInformationData: '',
       mediaInformationList: [],
@@ -97,48 +70,39 @@ export default {
       }
     };
   },
-  watch: {
-    searchDay(newName, oldName) {
-      if (newName != oldName) {
-        this.echartsData.data = []
-        for (var i = 0; i < this.mediaInformationData.length; i++) {
-          this.echartsData.name.push(this.mediaInformationData[i].mediaName);
+  // watch: {
+  //   searchDay(newName, oldName) {
+  //     if (newName != oldName) {
+  //       this.echartsData.data = []
+  //       for (var i = 0; i < this.mediaInformationData.length; i++) {
+  //         this.echartsData.name.push(this.mediaInformationData[i].mediaName);
 
-          if (newName == 1) {
-            if (this.mediaInformationData[i].dayNowNumber != 0) {
-              this.echartsData.data.push({ value: this.mediaInformationData[i].dayNowNumber, name: this.mediaInformationData[i].mediaName })
-            }
-          }
-          if (newName == 7) {
-            if (this.mediaInformationData[i].daySevenNumber != 0) {
-              this.echartsData.data.push({ value: this.mediaInformationData[i].daySevenNumber, name: this.mediaInformationData[i].mediaName })
-            }
-          }
-          if (newName == 15) {
-            if (this.mediaInformationData[i].dayFifteenNumber != 0) {
-              this.echartsData.data.push({ value: this.mediaInformationData[i].dayFifteenNumber, name: this.mediaInformationData[i].mediaName })
-            }
+  //         if (newName == 1) {
+  //           if (this.mediaInformationData[i].dayNowNumber != 0) {
+  //             this.echartsData.data.push({ value: this.mediaInformationData[i].dayNowNumber, name: this.mediaInformationData[i].mediaName })
+  //           }
+  //         }
+  //         if (newName == 7) {
+  //           if (this.mediaInformationData[i].daySevenNumber != 0) {
+  //             this.echartsData.data.push({ value: this.mediaInformationData[i].daySevenNumber, name: this.mediaInformationData[i].mediaName })
+  //           }
+  //         }
+  //         if (newName == 15) {
+  //           if (this.mediaInformationData[i].dayFifteenNumber != 0) {
+  //             this.echartsData.data.push({ value: this.mediaInformationData[i].dayFifteenNumber, name: this.mediaInformationData[i].mediaName })
+  //           }
 
-          }
-        }
-      }
-      this.getEchartData(this.echartsData)
-    }
-  },
+  //         }
+  //       }
+  //     }
+  //     this.getEchartData(this.echartsData)
+  //   }
+  // },
   mounted() {
     //获取今天7天15天稿件数
     this.getMediaArticleTotalNumber();
     //获取echarts，列表轮播数据
     this.getMediaInformationList();
-    //轮播
-    // var navSwiper = new Swiper(".swiper-container", {
-    //   pagination: '.swiper-pagination',
-    //   paginationClickable: true,
-    //   autoplay: 3000,
-    //   spaceBetween: 30
-    // });
-
-    //echarts
   },
 
 
@@ -150,14 +114,19 @@ export default {
       }).then((response) => {
         console.log(response);
         this.articleTotalNumber = response.result;
-
       }, (response) => {
         console.log('response');
 
       });
     },
     changeSearch(day) {
-      this.searchDay = day;
+      if (this.searchDay != day) {
+        this.searchDay = day;
+        this.getMediaInformationList()
+
+      }
+
+
     },
 
     getMediaInformationList() {
@@ -165,15 +134,40 @@ export default {
         timeScope: this.searchDay
       }
       fetchUtil({
-        method: 'post',
+        method: 'get',
         url: "/casindex/mediaStatistics/getMediaInformationList",
-        params: submitparams
+        params:submitparams
       }).then((response) => {
         this.mediaInformationData = response.result;
-        this.searchDay = 1;
+        this.mediaInformationList =[];
         for (var i = 0; i < this.mediaInformationData.length; i += 9) {
           this.mediaInformationList.push(this.mediaInformationData.slice(i, i + 9));
         }
+
+        this.echartsData.data = [];
+        this.echartsData.name=[];
+        for (var i = 0; i < this.mediaInformationData.length; i++) {
+          this.echartsData.name.push(this.mediaInformationData[i].mediaName);
+
+          if (this.searchDay == 1) {
+            if (this.mediaInformationData[i].dayNowNumber != 0) {
+              this.echartsData.data.push({ value: this.mediaInformationData[i].dayNowNumber, name: this.mediaInformationData[i].mediaName })
+            }
+          }
+          if (this.searchDay == 7) {
+            if (this.mediaInformationData[i].daySevenNumber != 0) {
+              this.echartsData.data.push({ value: this.mediaInformationData[i].daySevenNumber, name: this.mediaInformationData[i].mediaName })
+            }
+          }
+          if (this.searchDay == 15) {
+            if (this.mediaInformationData[i].dayFifteenNumber != 0) {
+              this.echartsData.data.push({ value: this.mediaInformationData[i].dayFifteenNumber, name: this.mediaInformationData[i].mediaName })
+            }
+
+          }
+        }
+
+        this.getEchartData(this.echartsData)
 
       }, (response) => {
         console.log('response');

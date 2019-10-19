@@ -9,9 +9,9 @@
             <div class="cont_search">
 
                 <!-- <el-select v-model="submit.searchflag" clearable placeholder="请选择">
-                                                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-                                                </el-option>
-                                            </el-select> -->
+                                                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                                                    </el-option>
+                                                </el-select> -->
                 <input class="searchword" type="text" v-model="submit.searchword" placeholder="请输入关键词" onfocus="this.placeholder=''" onblur="this.placeholder='请输入关键词'" />
                 <el-date-picker value-format="yyyyMMdd" v-model="submit.searchTime" type="daterange" align="right" unlink-panels range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions2" style="cursor: pointer;">
                 </el-date-picker>
@@ -25,12 +25,12 @@
         </div>
         <div style="width:100%">
             <div class="cont_list">
-                <el-table :data="tableData" style="width:100%" @row-click="openDetails">>
+                <el-table :data="tableData" @sort-change="changeSort" :default-sort="{prop:'PUBDATE',order:'{descending:descending,descending:descending}'}" style="width:100%" @row-click="openDetails">
                     <el-table-column type="index" label="序号" min-width="5%">
                     </el-table-column>
-                    <el-table-column  prop="TITLE" label="标题" class="multiple" min-width="20%">
+                    <el-table-column prop="TITLE" label="标题" class="multiple" min-width="20%">
                     </el-table-column>
-                    <el-table-column prop="PUBDATE" label="发稿日期" min-width="10%" align="center">
+                    <el-table-column prop="PUBDATE" label="发稿日期" sortable :sort-orders="['ascending', '{descending:descending,descending:descending}']" min-width="10%" align="center">
                     </el-table-column>
                     <el-table-column prop="WEBSITEREPRINTS" label="网站" min-width="5%" align="center">
                     </el-table-column>
@@ -157,6 +157,11 @@ export default {
             console.log(this.$route)
             this.getDetailList();
         },
+        changeSort(val) {
+            console.log(val,"根据当前排序重新获取后台数据,") // column: {…} order: "ascending" prop: "date"
+            // 根据当前排序重新获取后台数据,一般后台会需要一个排序的参数
+
+        },
         UpdatePage: function(page, size) {
             this.submit.pageNo = page;
             this.submit.pageSize = size;
@@ -213,7 +218,7 @@ export default {
             });
         },
         openDetails(row) {
-            this.$router.push({ path: '/analysisDetaile', query: { id: row.SID,mediaUnitName: row.SITENAME} })
+            this.$router.push({ path: '/analysisDetaile', query: { id: row.SID, mediaUnitName: row.SITENAME } })
         }
 
     },

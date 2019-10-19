@@ -25,14 +25,14 @@
                     <span>
                         <a>{{aweasdf.REPRINTS}}</a>次，
                     </span>
-                    <span v-if="aweasdf.COREREPRINTS!=0"> 其中包括核心媒体
+                    <span> 其中包括核心媒体
                         <a>{{aweasdf.COREREPRINTS}}</a>次、
                     </span>
                     <!-- <span>外部转载{{}}次、</span> -->
-                    <span v-if="aweasdf.LV1REPTINTS!=0">一级媒体
+                    <span>一级媒体
                         <a>{{aweasdf.LV1REPTINTS}}</a>次、
                     </span>
-                    <span v-if="aweasdf.LV2REPTINTS!=0">二级媒体
+                    <span >二级媒体
                         <a>{{aweasdf.LV2REPTINTS}}</a>
                     </span>次
                 </p>

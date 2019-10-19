@@ -37,6 +37,7 @@ body {
 
 
 
+
 /* 全局重置CSS */
 
 body,
@@ -80,11 +81,13 @@ img {
 
 
 
+
 /*包含以下四种的链接*/
 
 a {
   text-decoration: none;
 }
+
 
 
 
@@ -104,11 +107,13 @@ a:link {
 
 
 
+
 /*已经访问过的链接*/
 
 a:visited {
   text-decoration: none;
 }
+
 
 
 
@@ -129,11 +134,13 @@ a:hover {
 
 
 
+
 /* 正在点击的链接*/
 
 a:active {
   text-decoration: none;
 }
+
 
 
 
@@ -167,6 +174,7 @@ a {
 
 
 
+
 /*定义滚动条的轨道，内阴影及圆角*/
 
 ::-webkit-scrollbar-track {
@@ -176,6 +184,7 @@ a {
   color: transparent;
   filter: alpha(opacity=0);
 }
+
 
 
 
@@ -200,6 +209,7 @@ a {
 
 
 
+
 /*滚动条透明*/
 
 
@@ -208,6 +218,7 @@ a {
 table {
   border-collapse: collapse;
 }
+
 
 
 
@@ -229,6 +240,7 @@ html {
 
 
 
+
 /***默认让所有浏览器出现右边滚动条****/
 
 .clear {
@@ -243,6 +255,7 @@ html {
 :focus {
   outline: 0;
 }
+
 
 
 
@@ -281,12 +294,28 @@ html {
   .swiper-container {
     padding: 0 0 20px 0;
     height: 100%;
+    .el-carousel--horizontal{
+      height: 100%;
+    }
     .el-carousel__container {
       height: 100%;
     }
     .swiper-pagination-bullet-active {
       background: #27326b;
     }
+   
+    .el-carousel__indicators--horizontal{
+      .el-carousel__button {
+      width: 8px;
+      height: 8px;
+      display: inline-block;
+      border-radius: 100%;
+      color: #27326b;
+      background: #27326b;
+    }
+
+    }
+    
   }
   .el-table {
     .multiple {
