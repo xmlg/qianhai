@@ -21,7 +21,7 @@
       <div class="meitiRightc">
         <div class="swiper-container">
           <el-carousel :interval="50000" arrow="always">
-            <el-carousel-item v-for="(itemList,index) in mediaInformationList" :key="index">
+            <el-carousel-item v-for="(itemList,index) in mediaInformationList" :key="itemList">
               <table border="0" cellpadding="0" cellspacing="0">
                 <tr class="tou">
                   <td>序号</td>
