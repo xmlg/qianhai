@@ -3,37 +3,21 @@
     <!-- <el-row class="tac"> -->
     <div style="width:100%;" class="tac">
       <div class="left_menu">
-        <el-menu
-          :default-active="this.$route.path"
-          router
-          @open="handleOpen"
-          @close="handleClose"
-          background-color="#f0f1f5"
-          text-color="#888"
-          active-text-color="#4259a3"
-          :router="true"
-          :default-openeds="[allMeidia]"
-        >
-          <el-submenu :index="allMeidia" :key="""">
+        <el-menu :default-active="this.$route.path" router @open="handleOpen" @close="handleClose" background-color="#f0f1f5" text-color="#888" active-text-color="#4259a3" :router="true" :default-openeds="[allMeidia]">
+          <el-submenu :index="allMeidia" :key="''">
             <template slot="title">
               <span>合作媒体</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item
-                v-for="(item,index) in menuList"
-                :id="'mddiaCode_'+item.mddiaCode"
-                :key="item.mddiaCode"
-                :index="'/meidiaList?meidiaId='+item.mddiaCode+'&meidiaName=' + item.mediaName"
-                :class="(currentRoute== ('/meidiaList?meidiaId='+item.mddiaCode))?'active':''"
-              >{{item.mediaName}}</el-menu-item>
+              <el-menu-item v-for="(item,index) in menuList" :id="'mddiaCode_'+item.mddiaCode" :key="item.mddiaCode" :index="'/meidiaList?meidiaId='+item.mddiaCode+'&meidiaName=' + item.mediaName" :class="(currentRoute== ('/meidiaList?meidiaId='+item.mddiaCode))?'active':''">{{item.mediaName}}</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
       </div>
       <!-- 主页面 -->
       <!-- <el-col class="impactanalysis_main" :span="20" background-color="#b2b2b2;">
-                                    <router-view></router-view>
-      </el-col>-->
+                                      <router-view></router-view>
+        </el-col>-->
       <div class="impactanalysis_main" background-color="#b2b2b2;">
         <router-view></router-view>
       </div>
@@ -58,20 +42,20 @@ export default {
       this.currentRoute = this.$route.fullPath.split("&meidiaName")[0];
     }
   },
-created:function(){
+  created: function() {
     console.log(this.currentRoute, "刚开始的路由");
     this.getMenuList();
-},
-// mounted() {
-//     this.$nextTick(function(){
-//         var mddiaCode = "#mddiaCode_" + this.$route.query.meidiaId;
-//         var anchor = this.$el.querySelector(mddiaCode);
-//         // document.documentElement.scrollTop = anchor.offsetTop
+  },
+  // mounted() {
+  //     this.$nextTick(function(){
+  //         var mddiaCode = "#mddiaCode_" + this.$route.query.meidiaId;
+  //         var anchor = this.$el.querySelector(mddiaCode);
+  //         // document.documentElement.scrollTop = anchor.offsetTop
 
-//     })
-    
-    
-// },
+  //     })
+
+
+  // },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, "999", keyPath);
@@ -89,21 +73,21 @@ created:function(){
         response => {
           console.log(response, "menuList");
           this.menuList = response.result;
-          this.$nextTick(function(){
-            if(!!this.$route.query.meidiaId){
-                  var mddiaCode = "mddiaCode_" + this.$route.query.meidiaId;
-        var element = document.getElementById(mddiaCode);
-        element.scrollIntoView(true);
+          this.$nextTick(function() {
+            if (!!this.$route.query.meidiaId) {
+              var mddiaCode = "mddiaCode_" + this.$route.query.meidiaId;
+              var element = document.getElementById(mddiaCode);
+              element.scrollIntoView(true);
 
-              }
-      
+            }
 
-    })
+
+          })
         },
         response => {
           console.log("response");
         }
-      );
+        );
     }
   }
 };

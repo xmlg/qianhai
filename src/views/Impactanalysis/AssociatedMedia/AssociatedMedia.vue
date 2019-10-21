@@ -59,7 +59,7 @@ export default {
   name: "associatedMedia",
   data() {
     return {
-      searchDay: 1,
+      searchDay: 7,
       articleTotalNumber: '',
       mediaInformationData: '',
       mediaInformationList: [],
